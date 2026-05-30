@@ -40,10 +40,10 @@ class TreeRenderer(object):
         
         s = ""
 
-        if self._tree.type == NodeType.FILE:
+        if tree.type == NodeType.FILE:
             s = f"{s}{TextModifier.ITALIC.value}"
 
-        s = f"{s}{tree.name}{TextModifier.NORMAL.value}"
+        s = f"{s}{tree.name} ({tree.size} B){TextModifier.NORMAL.value}"
 
         print(s)
 

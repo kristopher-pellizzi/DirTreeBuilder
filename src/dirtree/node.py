@@ -1,8 +1,9 @@
 from .nodetype import NodeType
 
 class Node(object):
-    def __init__(self, name: str, node_type: NodeType):
+    def __init__(self, name: str, size: int, node_type: NodeType):
         self.name = name
+        self.size = size
         self.type = node_type
         self.content: list[Node] = list()
 
