@@ -4,6 +4,7 @@ from .node import Node
 from .nodetype import NodeType
 from .text_modifier import TextModifier
 from .building_block import BuildingBlock
+from .size_unit import SizeUnit
 
 _logger = logging.getLogger(__name__)
 
@@ -43,7 +44,8 @@ class TreeRenderer(object):
         if tree.type == NodeType.FILE:
             s = f"{s}{TextModifier.ITALIC.value}"
 
-        s = f"{s}{tree.name} ({tree.size} B){TextModifier.NORMAL.value}"
+        tree_size, size_unit = SizeUnit.compute_unit(tree.size)
+        s = f"{s}{tree.name} ({tree_size} {size_unit.value}){TextModifier.NORMAL.value}"
 
         print(s)
 
