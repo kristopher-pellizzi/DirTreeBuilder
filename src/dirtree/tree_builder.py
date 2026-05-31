@@ -19,11 +19,13 @@ class TreeBuilder(object):
             el_size = os.path.getsize(el_path)
 
             if el.is_dir():
-                root.add(self._build_helper(el_path))
+                sub_tree = self._build_helper(el_path)
+                root.add(sub_tree)
+                root.size += sub_tree.size
             else:
                 root.add(Node(os.path.basename(el_path), el_size, NodeType.FILE))
+                root.size += el_size
 
-        root.size = reduce(lambda acc, el: acc + el.size, root.content, 0)
         root.content.sort(key=lambda x: x.size, reverse=True)
 
         return root
